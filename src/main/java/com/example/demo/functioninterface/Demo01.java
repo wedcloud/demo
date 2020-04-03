@@ -49,6 +49,8 @@ class User {
   private Integer age;
   private String name;
 
+  public User() {}
+
   public User(Integer id, Integer age, String name) {
     this.id = id;
     this.age = age;
