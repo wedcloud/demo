@@ -1,6 +1,7 @@
 package com.example.demo.classes;
 
 import java.lang.annotation.*;
+import java.lang.reflect.Method;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.lang.annotation.*;
  * @date : 2020-04-07 17:02
  */
 public class Demo06 {
-  public static void main(String[] args) throws NoSuchFieldException {
+  public static void main(String[] args) throws Exception {
     Class<Dao> aClass = Dao.class;
     // 获取类上的所有注解
     Annotation[] annotations = aClass.getAnnotations();
@@ -33,6 +34,13 @@ public class Demo06 {
     Field field = id.getAnnotation(Field.class);
     System.out.println(field.column());
     System.out.println(field.type());
+    System.out.println("==================");
+
+    // 获取静态方法
+    Method[] methods = aClass.getDeclaredMethods();
+    for (Method method : methods) {
+      System.out.println(method);
+    }
   }
 }
 
@@ -63,6 +71,14 @@ class Dao {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public static void abc() {
+    System.out.println("静态方法");
+  }
+
+  static {
+    System.out.println("静态代码块");
   }
 }
 
